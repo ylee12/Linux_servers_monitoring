@@ -1,0 +1,65 @@
+
+Scripts deployment steps
+
+1. ylee@YLEE-QA:/media/ylee_github/server_monitoring$ scp *.sh ylee@mtcbuild.mtc.ca.gov:~/server_monitoring/
+2. [ylee@mtcbuild server_monitoring]$ ./copy_cron_job.sh
+3. [root@mtcbuild ~]# ./install_cron_job.sh
+4. Done!
+
+
+
+===========================================
+
+Search String: how to find 10 most disk usage in linux
+
+Finding files that use the most disk space
+To list the top 10 largest files from the current directory: du . | sort -nr | head -n10
+To list the largest directories from the current directory: du -s * | sort -nr | head -n10
+
+======================
+
+
+
+You can try with this command, it will list all files larger than 20Mb.
+
+find / -type f -size +20000k -exec ls -lh {} \; 2> /dev/null \
+  | awk '{ print $NF ": " $5 }'  | sort -hrk 2,2
+
+==================
+
+Find disk space usage in directory
+sudo du -h / | grep -P '^[0-9\.]+G' | sort -nr
+
+==================================
+
+Disable The Mail Alert By Crontab Command
+
+Append string >/dev/null 2>&1 to stop mail alert:
+0 1 5 10 * /path/to/script.sh >/dev/null 2>&1
+
+
+http://www.cyberciti.biz/faq/disable-the-mail-alert-by-crontab-command/
+=======================================================
+
+Restart Cron deamon
+/etc/init.d/crond restart
+
+=================================
+
+Why does cron silently fail to run sudo stuff in my script?
+
+Comment out the line in /etc/sudoers
+#Defaults    requiretty
+
+=============================
+
+Running Commands on a Remote Linux Server over SSH
+
+ssh [user]@[server] '[command]'
+
+ex. ylee@YLEE-QA:/media/ylee_github/server_monitoring$ ssh ylee@internalapps.mtc.ca.gov 'mkdir ~/server_monitoring'
+
+ssh [user]@[server] '[command 1]; [command 2]; [command 3]'
+
+
+http://www.shellhacks.com/en/Running-Commands-on-a-Remote-Linux-Server-over-SSH

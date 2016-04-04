@@ -1,0 +1,6 @@
+
+[ylee@testweb2 server_monitoring]$ df -h | awk '{print $NF}'
+
+#concatenate all field with a string
+[ylee@testweb2 server_monitoring]$ cat /etc/passwd | awk -F: '{print $1 ", " $2  + ", " $3 ", " $4 ", " $5 ", " $6}'
+
